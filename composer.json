@@ -1,0 +1,28 @@
+{
+    "name": "AndreasHerold/bootstrap-css-sprite",
+    "description": "A class for generating css and imagesprites",
+    "homepage": "https://github.com/AndreasHerold/bootstrap-css-sprite",
+    "license": "MIT",
+    "type": "library",
+    "keywords": [
+        "css",
+        "sprite",
+        "bootstrap",
+        "php"
+    ],
+    "authors": [
+        {"name": "Oleg Poludnenko", "homepage": "https://github.com/uaoleg/"},
+        {"name": "Andreas Herold", "homepage": "https://github.com/AndreasHerold"}
+    ],
+    "require-dev": {
+        "sandrokeil/citools": "~1.0"
+    },
+    "require": {
+        "php": "~5.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "CssSprite\\": "lib/"
+        }
+    }
+}
