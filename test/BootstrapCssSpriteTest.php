@@ -3,7 +3,7 @@
 namespace CssSpriteTest\BootstrapCssSprite;
 
 use CssSprite\BootstrapCssSprite;
-use PHPUnit_Framework_Testcase as TestCase;
+use PHPUnit_Framework_TestCase as TestCase;
 
 /**
  * Class BootstrapCssSpriteTest
