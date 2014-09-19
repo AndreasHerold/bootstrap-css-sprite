@@ -1,8 +1,7 @@
 <?php
-
 require_once '../lib/BootstrapCssSprite.php';
 
-$sprite = new BootstrapCssSprite(array(
+$sprite = new CssSprite\BootstrapCssSprite(array(
     'imgSourcePath' => __DIR__ . '/images/source',
     'imgSourceExt'  => 'jpg,jpeg,gif,png',
     'imgDestPath'   => __DIR__ . '/images/sprite.png',
@@ -10,6 +9,11 @@ $sprite = new BootstrapCssSprite(array(
     'cssNamespace'  => 'img',
     'cssImgUrl'     => '../images/sprite.png',
 ));
+$sprite->setCheckIfImageIsCreated(false)
+    ->setInitialCssStyleCompact(true)
+    ->setInitialCssSelectors('.icon-category')
+    ->setCompactImage(true);
+
 $sprite->generate();
 
 ?>

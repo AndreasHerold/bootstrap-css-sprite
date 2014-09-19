@@ -1,5 +1,4 @@
-[class^="img-"],
-[class*=" img-"] {
+.icon-category {
     border: 1px solid gray;
     border-radius: 5px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);

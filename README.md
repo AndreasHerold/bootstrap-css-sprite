@@ -90,6 +90,18 @@ Oleg Poludnenko <oleg@poludnenko.info>
 ## Bugs & Issues
 Please feel free to report any bugs and issues to me, my email is: <oleg@poludnenko.info>
 
+## Installation
+Installation of this module uses composer. For composer documentation, please refer to
+[getcomposer.org](http://getcomposer.org/).
+
+Put the following into your composer.json
+
+    {
+        "require": {
+            "AndreasHerold/bootstrap-css-sprite": "~1.0"
+        }
+    }
+
 ## Contributing
 Somebody who want to contribute to the project, may help us by doing these:
 <ul>

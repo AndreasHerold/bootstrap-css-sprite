@@ -1,5 +1,5 @@
 <?php
-
+namespace CssSprite;
 /**
  * BootstrapCssSprite
  *
@@ -10,6 +10,10 @@
  *
  * @author Oleg Poludnenko <oleg@poludnenko.info>
  * @version 0.6.7
+ * @package CssSprite
+ * @license MIT <http://opensource.org/licenses/MIT>
+ * @copyright 2013 Oleg Poludnenko <oleg@poludnenko.info>
+
  */
 class BootstrapCssSprite
 {
@@ -678,10 +682,9 @@ class BootstrapCssSprite
     /**
      * Creates the css style data for the given Image ($imgData)
      *
-     * @param $cssList
-     * @param $class
-     * @param $imgData
-     * @return array
+     * @param array $cssList
+     * @param string $class
+     * @param array $imgData
      */
     protected function _setImageCssData(&$cssList, $class, $imgData)
     {
