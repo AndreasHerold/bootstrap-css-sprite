@@ -423,14 +423,12 @@ class BootstrapCssSprite
         }
 
         //Create Transparent Image
-        $dest = $this->_createInitialImage($imgWidth, $imgHeight);
+        $dest = $this->_initDestImage($imgWidth, $imgHeight);
 
         // Init CSS
-        $cssList = array();
-        $cssList = $this->_initCssList($cssList);
+        $cssList = $this->_initCssList();
 
         // Copy all images, create CSS file and list of tags
-        $this->_tagList = array();
         foreach ($this->_imgList as $imgPath => $imgData) {
 
             // Copy image
@@ -442,12 +440,17 @@ class BootstrapCssSprite
             $isMagicAction = $this->_isMagicAction($class);
 
             if (!$isMagicAction) {
-                $cssList[] = $this->_getImageCssData($class, $imgData);
+                $this->_setImageCssData($cssList, $class, $imgData);
 
                 $this->_setStyleForMagicActionImage($cssList, $imgPath, $imgData, $class);
 
                 // Append tag
-                $this->_tagList[] = '<span class="' . mb_substr($class, 1) . '"></span>';
+                if ($this->_initialCssSelectors != 'default') {
+                    $class = mb_substr($this->_initialCssSelectors, 1) . ' ' . mb_substr($class, 1);
+                } else {
+                    $class = mb_substr($class, 1);
+                }
+                $this->_tagList[] = '<span class="' . $class . '"></span>';
             }
         }
 
@@ -481,14 +484,15 @@ class BootstrapCssSprite
      * @param int $imgHeight
      * @return resource
      */
-    protected function _createInitialImage($imgWidth, $imgHeight)
+    protected function _initDestImage($imgWidth, $imgHeight)
     {
         $dest = imagecreatetruecolor($imgWidth, $imgHeight);
         if ($this->_compactImage) {
             // Convert to palette-based with no dithering and 255 colors with alpha
             imagetruecolortopalette($dest, false, 255);
+        } else {
+            imagesavealpha($dest, true);
         }
-        imagesavealpha($dest, true);
         $trans_colour = imagecolorallocatealpha($dest, 0, 0, 0, 127);
         imagefill($dest, 0, 0, $trans_colour);
         return $dest;
@@ -572,7 +576,7 @@ class BootstrapCssSprite
      *
      * @return array
      */
-    protected function _initCssList($cssList)
+    protected function _initCssList($cssList = array())
     {
         if ($this->_initialCssSelectors == 'default') {
             $initSelectors = array(
@@ -580,16 +584,15 @@ class BootstrapCssSprite
                 '[class*=" ' . $this->_cssNamespace . '-"]',
             );
         } else {
-            $initSelectors = $this->_initialCssSelectors;
+            $initSelectors = array($this->_initialCssSelectors);
         }
         if ($this->_initialCssStyleCompact) {
-            $background = implode(' ', array(
-                'url("' . $this->_cssImgUrl . '")',
-                $this->_stylesBackgroundPosition,
-                $this->_stylesBackgroundRepeat
-            ));
             $initStyles = array(
-                'background'      => $background,
+                'background'      => implode(' ', array(
+                        'url("' . $this->_cssImgUrl . '")',
+                        $this->_stylesBackgroundRepeat,
+                        $this->_stylesBackgroundPosition,
+                    )),
                 'display'         => $this->_stylesDisplay,
                 'height'          => $this->_stylesHeight,
                 'vertical-align'  => $this->_stylesVerticalAlign,
@@ -675,19 +678,23 @@ class BootstrapCssSprite
     /**
      * Creates the css style data for the given Image ($imgData)
      *
+     * @param $cssList
      * @param $class
      * @param $imgData
      * @return array
      */
-    protected function _getImageCssData($class, $imgData)
+    protected function _setImageCssData(&$cssList, $class, $imgData)
     {
-        return array(
+        $styles = array(
+            'background-position'   => '-' . $imgData['x'] . 'px 0'
+        );
+
+        $this->_addSizeToStyle($cssList, $styles, $imgData);
+
+
+        $cssList[] = array(
             'selectors' => array($class),
-            'styles' => array(
-                'background-position'   => '-' . $imgData['x'] . 'px 0',
-                'height'                => $imgData['height'] . 'px',
-                'width'                 => $imgData['width'] . 'px',
-            ),
+            'styles' => $styles,
         );
     }
 
@@ -734,11 +741,32 @@ class BootstrapCssSprite
                 $css['styles'] = array(
                     'background-position'   => '-' . $magicActionData['x'] . 'px 0',
                     'background-position-x' => '-' . $magicActionData['x'] . 'px',
-                    'height'                => $magicActionData['height'] . 'px',
-                    'width'                 => $magicActionData['width'] . 'px',
                 );
+
+                $this->_addSizeToStyle($cssList, $css, $magicActionData);
+
                 $cssList[] = $css;
             }
+        }
+    }
+
+    /**
+     * Checks the size data of the image with the given base style data given by $cssList.
+     * If there any differences in height or width, the size will be added as a style otherwise not
+     *
+     * @param array $cssList styledatalist for the whole css file
+     * @param array $style styledatalist for the current element
+     * @param array $imgData data for the image
+     */
+    protected function _addSizeToStyle($cssList, &$style, $imgData)
+    {
+        //If the image has the same size as given in base-css data skip entry for the size
+        if ($cssList[0]['styles']['height'] != $imgData['height'] . 'px') {
+            $style['height'] = $imgData['height'] . 'px';
+        }
+
+        if ($cssList[0]['styles']['width'] != $imgData['width'] . 'px') {
+            $style['width'] = $imgData['width'] . 'px';
         }
     }
 
