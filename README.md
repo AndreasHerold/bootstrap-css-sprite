@@ -33,6 +33,16 @@ The CSS file contains classes for all merged files. These classes define source 
 ));
 $sprite->generate();
 </code></pre>
+Every member of the class BootstrapCssSprite can be set by the setter-method. The above example would look like this with the fluent interface:
+<pre><code>$sprite = new BootstrapCssSprite();
+$sprite->setImgSourcePath('./images/source')
+    ->setImgSourceExt('jpg,jpeg,gif,png')
+    ->setImgDestPath('./images/sprite.png')
+    ->setCssPath('./css/sprite.css')
+    ->setCssImgUrl('../images/sprite.png');
+$sprite->generate();
+</code></pre>
+
 
 It will look the same way for Yii component. Just copy <b>YiiBootstrapCssSprite.php</b> file to /extensions/ and add this component in /config/main.php
 <pre><code>'components' => array(

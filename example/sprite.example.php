@@ -1,14 +1,21 @@
 <?php
 require_once '../lib/BootstrapCssSprite.php';
 
-$sprite = new CssSprite\BootstrapCssSprite(array(
-    'imgSourcePath' => __DIR__ . '/images/source',
-    'imgSourceExt'  => 'jpg,jpeg,gif,png',
-    'imgDestPath'   => __DIR__ . '/images/sprite.png',
-    'cssPath'       => __DIR__ . '/css/sprite.css',
-    'cssNamespace'  => 'img',
-    'cssImgUrl'     => '../images/sprite.png',
-));
+//$sprite = new CssSprite\BootstrapCssSprite(array(
+//    'imgSourcePath' => __DIR__ . '/images/source',
+//    'imgSourceExt'  => 'jpg,jpeg,gif,png',
+//    'imgDestPath'   => __DIR__ . '/images/sprite.png',
+//    'cssPath'       => __DIR__ . '/css/sprite.css',
+//    'cssNamespace'  => 'img',
+//    'cssImgUrl'     => '../images/sprite.png',
+//));
+$sprite = new CssSprite\BootstrapCssSprite();
+$sprite->setImgSourcePath('./images/source')
+    ->setImgSourceExt('jpg,jpeg,gif,png')
+    ->setImgDestPath('./images/sprite.png')
+    ->setCssPath('./css/sprite.css')
+    ->setCssImgUrl('../images/sprite.png');
+
 $sprite->setCheckIfImageIsCreated(false)
     ->setInitialCssStyleCompact(true)
     ->setInitialCssSelectors('.icon-category')
