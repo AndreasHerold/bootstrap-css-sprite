@@ -36,7 +36,7 @@ class BootstrapCssSpriteTest extends TestCase
     {
         $sprite = new BootstrapCssSprite();
 
-        $method = $this->_getProtectedMethod($sprite, '_initDestImage');
+        $method = $this->getProtectedMethod($sprite, '_initDestImage');
 
         $image = $method->invoke($sprite, 10, 10);
         $this->assertEquals('gd', get_resource_type($image));
@@ -52,7 +52,7 @@ class BootstrapCssSpriteTest extends TestCase
         $sprite = new BootstrapCssSprite();
         $sprite->setImgSourcePath($sourcePath);
 
-        $method = $this->_getProtectedMethod($sprite, '_getImageClassName');
+        $method = $this->getProtectedMethod($sprite, '_getImageClassName');
 
         $path = $sourcePath . DIRECTORY_SEPARATOR . $fileName . '.png';
         $data = array('ext' => 'png');
@@ -66,7 +66,7 @@ class BootstrapCssSpriteTest extends TestCase
     {
         $class = '.img-imageName';
         $sprite = new BootstrapCssSprite();
-        $method = $this->_getProtectedMethod($sprite, '_isMagicAction');
+        $method = $this->getProtectedMethod($sprite, '_isMagicAction');
 
         $this->assertFalse($method->invoke($sprite, $class));
         $class .= '.hover';
@@ -79,7 +79,7 @@ class BootstrapCssSpriteTest extends TestCase
     public function testSetImageCssData()
     {
         $sprite = new BootstrapCssSprite();
-        $method = $this->_getProtectedMethod($sprite, '_setImageCssData');
+        $method = $this->getProtectedMethod($sprite, '_setImageCssData');
 
         $cssList = array();
         $class = '.img-imageName';
@@ -95,7 +95,7 @@ class BootstrapCssSpriteTest extends TestCase
      * @param $method
      * @return \ReflectionMethod
      */
-    protected function _getProtectedMethod($class, $method)
+    protected function getProtectedMethod($class, $method)
     {
         $reflectionClass = new \ReflectionClass($class);
         $method = $reflectionClass->getMethod($method);
@@ -103,4 +103,3 @@ class BootstrapCssSpriteTest extends TestCase
         return $method;
     }
 }
- 

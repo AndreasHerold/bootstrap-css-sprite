@@ -1,5 +1,6 @@
 <?php
 namespace CssSprite;
+
 /**
  * BootstrapCssSprite
  *
@@ -37,118 +38,118 @@ class BootstrapCssSprite
     /**
      * @var array
      */
-    protected $_imgList = array();
+    protected $imgList = array();
 
     /**
      * @var bool
      */
-    protected $_checkSubDirs = true;
+    protected $checkSubDirs = true;
 
     /**
      * Path to source images
      * @var string
      */
-    protected $_imgSourcePath;
+    protected $imgSourcePath;
 
     /**
      * List of source image's extensions to process
      * @var string
      */
-    protected $_imgSourceExt = 'jpg,jpeg,gif,png';
+    protected $imgSourceExt = 'jpg,jpeg,gif,png';
 
     /**
      * Image size (width or height) wich is greater, will be skipped
      * @var int
      */
-    protected $_imgSourceSkipSize;
+    protected $imgSourceSkipSize;
 
     /**
      * Path to result image
      * @var string
      */
-    protected $_imgDestPath;
+    protected $imgDestPath;
 
     /**
      * Path to result CSS file
      * @var string
      */
-    protected $_cssPath;
+    protected $cssPath;
 
     /**
      * Namespace (prefix) for CSS classes
      * @var string
      */
-    protected $_cssNamespace = 'img';
+    protected $cssNamespace = 'img';
 
     /**
      * @var bool
      */
-    protected $_compactImage = false;
+    protected $compactImage = false;
 
     /**
      * Result image URL in the CSS file
      * @var string
      */
-    protected $_cssImgUrl;
+    protected $cssImgUrl;
 
     /**
      * @var string
      */
-    protected $_initialCssSelectors = 'default';
+    protected $initialCssSelectors = 'default';
 
     /**
      * @var string
      */
-    protected $_initialCssStyleCompact = false;
+    protected $initialCssStyleCompact = false;
 
     /**
      * @var string
      */
-    protected $_stylesHeight = '64px';
+    protected $stylesHeight = '64px';
 
     /**
      * @var string
      */
-    protected $_stylesWidth = '64px';
+    protected $stylesWidth = '64px';
 
     /**
      * @var string
      */
-    protected $_stylesVerticalAlign = 'middle';
+    protected $stylesVerticalAlign = 'middle';
 
     /**
      * @var string
      */
-    protected $_stylesDisplay = 'inline-block';
+    protected $stylesDisplay = 'inline-block';
 
     /**
      * @var string
      */
-    protected $_stylesBackgroundRepeat = 'no-repeat';
+    protected $stylesBackgroundRepeat = 'no-repeat';
 
     /**
      * @var string
      */
-    protected $_stylesBackgroundPosition = '0 0';
+    protected $stylesBackgroundPosition = '0 0';
 
     /**
      * List of generated tag (can be used for example)
      * @var array
      */
-    protected $_tagList = array();
+    protected $tagList = array();
 
     /**
      * List of errors
      * @var array
      */
-    protected $_errors = array();
+    protected $errors = array();
 
     /**
      * Flag to set if checkModificationTime-method has to be executed
      *
      * @var bool
      */
-    protected $_checkIfImageIsCreated = true;
+    protected $checkIfImageIsCreated = true;
 
     /**
      * Constructor
@@ -159,7 +160,6 @@ class BootstrapCssSprite
     {
         // Initial configuration
         foreach ($config as $key => $value) {
-            $key = '_' . $key;
             if (property_exists($this, $key)) {
                 $this->$key = $value;
             }
@@ -173,7 +173,7 @@ class BootstrapCssSprite
      */
     public function setCheckIfImageIsCreated($checkIfImageIsCreated)
     {
-        $this->_checkIfImageIsCreated = $checkIfImageIsCreated;
+        $this->checkIfImageIsCreated = $checkIfImageIsCreated;
         return $this;
     }
 
@@ -183,7 +183,7 @@ class BootstrapCssSprite
      */
     public function setCssImgUrl($cssImgUrl)
     {
-        $this->_cssImgUrl = $cssImgUrl;
+        $this->cssImgUrl = $cssImgUrl;
         return $this;
     }
 
@@ -193,7 +193,7 @@ class BootstrapCssSprite
      */
     public function setCssNamespace($cssNamespace)
     {
-        $this->_cssNamespace = $cssNamespace;
+        $this->cssNamespace = $cssNamespace;
         return $this;
     }
 
@@ -204,7 +204,7 @@ class BootstrapCssSprite
      */
     public function setCompactImage($compactImage)
     {
-        $this->_compactImage = $compactImage;
+        $this->compactImage = $compactImage;
         return $this;
     }
 
@@ -214,7 +214,7 @@ class BootstrapCssSprite
      */
     public function setCssPath($cssPath)
     {
-        $this->_cssPath = $cssPath;
+        $this->cssPath = $cssPath;
         return $this;
     }
 
@@ -224,7 +224,7 @@ class BootstrapCssSprite
      */
     public function setImgDestPath($imgDestPath)
     {
-        $this->_imgDestPath = $imgDestPath;
+        $this->imgDestPath = $imgDestPath;
         return $this;
     }
 
@@ -234,7 +234,7 @@ class BootstrapCssSprite
      */
     public function setImgSourceExt($imgSourceExt)
     {
-        $this->_imgSourceExt = $imgSourceExt;
+        $this->imgSourceExt = $imgSourceExt;
         return $this;
     }
 
@@ -244,7 +244,7 @@ class BootstrapCssSprite
      */
     public function setCheckSubDirs($checkSubDirs)
     {
-        $this->_checkSubDirs = $checkSubDirs;
+        $this->checkSubDirs = $checkSubDirs;
         return $this;
     }
 
@@ -254,7 +254,7 @@ class BootstrapCssSprite
      */
     public function setImgSourcePath($imgSourcePath)
     {
-        $this->_imgSourcePath = $imgSourcePath;
+        $this->imgSourcePath = $imgSourcePath;
         return $this;
     }
 
@@ -264,7 +264,7 @@ class BootstrapCssSprite
      */
     public function setImgSourceSkipSize($imgSourceSkipSize)
     {
-        $this->_imgSourceSkipSize = $imgSourceSkipSize;
+        $this->imgSourceSkipSize = $imgSourceSkipSize;
         return $this;
     }
 
@@ -274,7 +274,7 @@ class BootstrapCssSprite
      */
     public function setTagList($tagList)
     {
-        $this->_tagList = $tagList;
+        $this->tagList = $tagList;
         return $this;
     }
 
@@ -284,7 +284,7 @@ class BootstrapCssSprite
      */
     public function setStylesBackgroundPosition($stylesBackgroundPosition)
     {
-        $this->_stylesBackgroundPosition = $stylesBackgroundPosition;
+        $this->stylesBackgroundPosition = $stylesBackgroundPosition;
         return $this;
     }
 
@@ -294,7 +294,7 @@ class BootstrapCssSprite
      */
     public function setStylesBackgroundRepeat($stylesBackgroundRepeat)
     {
-        $this->_stylesBackgroundRepeat = $stylesBackgroundRepeat;
+        $this->stylesBackgroundRepeat = $stylesBackgroundRepeat;
         return $this;
     }
 
@@ -304,7 +304,7 @@ class BootstrapCssSprite
      */
     public function setStylesDisplay($stylesDisplay)
     {
-        $this->_stylesDisplay = $stylesDisplay;
+        $this->stylesDisplay = $stylesDisplay;
         return $this;
     }
 
@@ -314,7 +314,7 @@ class BootstrapCssSprite
      */
     public function setStylesHeight($stylesHeight)
     {
-        $this->_stylesHeight = $stylesHeight;
+        $this->stylesHeight = $stylesHeight;
         return $this;
     }
 
@@ -325,7 +325,7 @@ class BootstrapCssSprite
      */
     public function setInitialCssSelectors($initialCssSelectors)
     {
-        $this->_initialCssSelectors = $initialCssSelectors;
+        $this->initialCssSelectors = $initialCssSelectors;
         return $this;
     }
 
@@ -336,7 +336,7 @@ class BootstrapCssSprite
      */
     public function setInitialCssStyleCompact($initialCssStyleCompact)
     {
-        $this->_initialCssStyleCompact = $initialCssStyleCompact;
+        $this->initialCssStyleCompact = $initialCssStyleCompact;
         return $this;
     }
 
@@ -346,7 +346,7 @@ class BootstrapCssSprite
      */
     public function setStylesVerticalAlign($stylesVerticalAlign)
     {
-        $this->_stylesVerticalAlign = $stylesVerticalAlign;
+        $this->stylesVerticalAlign = $stylesVerticalAlign;
         return $this;
     }
 
@@ -356,7 +356,7 @@ class BootstrapCssSprite
      */
     public function setStylesWidth($stylesWidth)
     {
-        $this->_stylesWidth = $stylesWidth;
+        $this->stylesWidth = $stylesWidth;
         return $this;
     }
 
@@ -367,7 +367,7 @@ class BootstrapCssSprite
      */
     public function getTagList()
     {
-        return $this->_tagList;
+        return $this->tagList;
     }
 
     /**
@@ -378,7 +378,7 @@ class BootstrapCssSprite
      */
     public function addError($type, $message = '')
     {
-        $this->_errors[] = array(
+        $this->errors[] = array(
             'type'      => $type,
             'message'   => $message,
         );
@@ -390,7 +390,7 @@ class BootstrapCssSprite
      */
     public function setErrors($errors)
     {
-        $this->_errors = $errors;
+        $this->errors = $errors;
         return $this;
     }
 
@@ -401,7 +401,7 @@ class BootstrapCssSprite
      */
     public function getErrors()
     {
-        return $this->_errors;
+        return $this->errors;
     }
 
     /**
@@ -413,55 +413,55 @@ class BootstrapCssSprite
         $this->setErrors(array());
 
         // Normalize destination image path
-        $this->_imgDestPath = str_replace(array('\\', '/'), DIRECTORY_SEPARATOR, $this->_imgDestPath);
+        $this->imgDestPath = str_replace(array('\\', '/'), DIRECTORY_SEPARATOR, $this->imgDestPath);
 
-        if ($this->_checkIfImageIsCreated) {
-            $this->_checkModificationTime();
+        if ($this->checkIfImageIsCreated) {
+            $this->checkModificationTime();
         }
 
         $imgWidth = $imgHeight = $xOffset = 0;
-        $this->_getImageList($this->_imgSourcePath, $xOffset, $imgWidth, $imgHeight);
-        if (count($this->_imgList) === 0) {
+        $this->getImageList($this->imgSourcePath, $xOffset, $imgWidth, $imgHeight);
+        if (count($this->imgList) === 0) {
             $this->addError(static::ERROR_NO_SOURCE_IMAGES);
             return;
         }
 
         //Create Transparent Image
-        $dest = $this->_initDestImage($imgWidth, $imgHeight);
+        $dest = $this->initDestImage($imgWidth, $imgHeight);
 
         // Init CSS
-        $cssList = $this->_initCssList();
+        $cssList = $this->initCssList();
 
         // Copy all images, create CSS file and list of tags
-        foreach ($this->_imgList as $imgPath => $imgData) {
+        foreach ($this->imgList as $imgPath => $imgData) {
 
             // Copy image
-            if (!$this->_copyImageToDestImage($imgData, $imgPath, $dest)) {
+            if (!$this->copyImageToDestImage($imgData, $imgPath, $dest)) {
                 continue;
             }
             // Append CSS (if not a magic action)
-            $class = $this->_getImageClassName($imgPath, $imgData);
-            $isMagicAction = $this->_isMagicAction($class);
+            $class = $this->getImageClassName($imgPath, $imgData);
+            $isMagicAction = $this->isMagicAction($class);
 
             if (!$isMagicAction) {
-                $this->_setImageCssData($cssList, $class, $imgData);
+                $this->setImageCssData($cssList, $class, $imgData);
 
-                $this->_setStyleForMagicActionImage($cssList, $imgPath, $imgData, $class);
+                $this->setStyleForMagicActionImage($cssList, $imgPath, $imgData, $class);
 
                 // Append tag
-                if ($this->_initialCssSelectors != 'default') {
-                    $class = mb_substr($this->_initialCssSelectors, 1) . ' ' . mb_substr($class, 1);
+                if ($this->initialCssSelectors != 'default') {
+                    $class = mb_substr($this->initialCssSelectors, 1) . ' ' . mb_substr($class, 1);
                 } else {
                     $class = mb_substr($class, 1);
                 }
-                $this->_tagList[] = '<span class="' . $class . '"></span>';
+                $this->tagList[] = '<span class="' . $class . '"></span>';
             }
         }
 
-        $this->_saveImageFile($dest);
+        $this->saveImageFile($dest);
         imagedestroy($dest);
 
-        $this->_saveCssFile($cssList);
+        $this->saveCssFile($cssList);
     }
 
     /**
@@ -469,11 +469,11 @@ class BootstrapCssSprite
      *
      * @return void
      */
-    protected function _checkModificationTime()
+    protected function checkModificationTime()
     {
-        if ((is_dir($this->_imgSourcePath)) && (is_file($this->_imgDestPath))) {
-            $imgSourceStat = stat($this->_imgSourcePath);
-            $imgDestStat = stat($this->_imgDestPath);
+        if ((is_dir($this->imgSourcePath)) && (is_file($this->imgDestPath))) {
+            $imgSourceStat = stat($this->imgSourcePath);
+            $imgDestStat = stat($this->imgDestPath);
             if ($imgSourceStat['mtime'] <= $imgDestStat['mtime']) {
                 $this->addError(static::ERROR_SPRITE_EQUALS_TO_SOURCE);
                 return;
@@ -488,10 +488,10 @@ class BootstrapCssSprite
      * @param int $imgHeight
      * @return resource
      */
-    protected function _initDestImage($imgWidth, $imgHeight)
+    protected function initDestImage($imgWidth, $imgHeight)
     {
         $dest = imagecreatetruecolor($imgWidth, $imgHeight);
-        if ($this->_compactImage) {
+        if ($this->compactImage) {
             // Convert to palette-based with no dithering and 255 colors with alpha
             imagetruecolortopalette($dest, false, 255);
         } else {
@@ -510,13 +510,13 @@ class BootstrapCssSprite
      * @param $imgWidth
      * @param $imgHeight
      */
-    protected function _getImageList($dir, &$xOffset, &$imgWidth, &$imgHeight)
+    protected function getImageList($dir, &$xOffset, &$imgWidth, &$imgHeight)
     {
-        $imageList = $this->_getFileList($dir);
+        $imageList = $this->getFileList($dir);
         foreach ($imageList as $imagePath) {
 
             // Skip previously generated sprite
-            if ($imagePath === $this->_imgDestPath) {
+            if ($imagePath === $this->imgDestPath) {
                 continue;
             }
 
@@ -530,8 +530,8 @@ class BootstrapCssSprite
             }
 
             // Check size
-            if ($this->_imgSourceSkipSize) {
-                if (($itemWidth > $this->_imgSourceSkipSize) || ($itemHeight > $this->_imgSourceSkipSize)) {
+            if ($this->imgSourceSkipSize) {
+                if (($itemWidth > $this->imgSourceSkipSize) || ($itemHeight > $this->imgSourceSkipSize)) {
                     continue;
                 }
             }
@@ -543,7 +543,7 @@ class BootstrapCssSprite
             }
 
             // Push image to the list
-            $this->_imgList[$imagePath] = array(
+            $this->imgList[$imagePath] = array(
                 'width'     => $itemWidth,
                 'height'    => $itemHeight,
                 'x'         => $xOffset,
@@ -553,10 +553,10 @@ class BootstrapCssSprite
             $xOffset += $itemWidth;
         }
 
-        if ($this->_checkSubDirs) {
+        if ($this->checkSubDirs) {
             $subdirList = glob($dir . DIRECTORY_SEPARATOR . '*', GLOB_ONLYDIR);
             foreach ($subdirList as $subdir) {
-                $this->_getImageList($subdir, $xOffset, $imgWidth, $imgHeight);
+                $this->getImageList($subdir, $xOffset, $imgWidth, $imgHeight);
             }
         }
     }
@@ -567,9 +567,9 @@ class BootstrapCssSprite
      * @param string $dir
      * @return array
      */
-    protected function _getFileList($dir)
+    protected function getFileList($dir)
     {
-        $fileList = glob($dir . DIRECTORY_SEPARATOR . '*.{' . $this->_imgSourceExt . '}', GLOB_BRACE);
+        $fileList = glob($dir . DIRECTORY_SEPARATOR . '*.{' . $this->imgSourceExt . '}', GLOB_BRACE);
         return $fileList;
     }
 
@@ -580,37 +580,37 @@ class BootstrapCssSprite
      *
      * @return array
      */
-    protected function _initCssList($cssList = array())
+    protected function initCssList($cssList = array())
     {
-        if ($this->_initialCssSelectors == 'default') {
+        if ($this->initialCssSelectors == 'default') {
             $initSelectors = array(
-                '[class^="' . $this->_cssNamespace . '-"]',
-                '[class*=" ' . $this->_cssNamespace . '-"]',
+                '[class^="' . $this->cssNamespace . '-"]',
+                '[class*=" ' . $this->cssNamespace . '-"]',
             );
         } else {
-            $initSelectors = array($this->_initialCssSelectors);
+            $initSelectors = array($this->initialCssSelectors);
         }
-        if ($this->_initialCssStyleCompact) {
+        if ($this->initialCssStyleCompact) {
             $initStyles = array(
                 'background'      => implode(' ', array(
-                        'url("' . $this->_cssImgUrl . '")',
-                        $this->_stylesBackgroundRepeat,
-                        $this->_stylesBackgroundPosition,
-                    )),
-                'display'         => $this->_stylesDisplay,
-                'height'          => $this->_stylesHeight,
-                'vertical-align'  => $this->_stylesVerticalAlign,
-                'width'           => $this->_stylesWidth,
+                    'url("' . $this->cssImgUrl . '")',
+                    $this->stylesBackgroundRepeat,
+                    $this->stylesBackgroundPosition,
+                )),
+                'display'         => $this->stylesDisplay,
+                'height'          => $this->stylesHeight,
+                'vertical-align'  => $this->stylesVerticalAlign,
+                'width'           => $this->stylesWidth,
             );
         } else {
             $initStyles = array(
-                'background-image'    => 'url("' . $this->_cssImgUrl . '")',
-                'background-position' => $this->_stylesBackgroundPosition,
-                'background-repeat'   => $this->_stylesBackgroundRepeat,
-                'display'             => $this->_stylesDisplay,
-                'height'              => $this->_stylesHeight,
-                'vertical-align'      => $this->_stylesVerticalAlign,
-                'width'               => $this->_stylesWidth,
+                'background-image'    => 'url("' . $this->cssImgUrl . '")',
+                'background-position' => $this->stylesBackgroundPosition,
+                'background-repeat'   => $this->stylesBackgroundRepeat,
+                'display'             => $this->stylesDisplay,
+                'height'              => $this->stylesHeight,
+                'vertical-align'      => $this->stylesVerticalAlign,
+                'width'               => $this->stylesWidth,
             );
         }
 
@@ -629,7 +629,7 @@ class BootstrapCssSprite
      * @param resource $dest
      * @return bool
      */
-    protected function _copyImageToDestImage($imgData, $imgPath, $dest)
+    protected function copyImageToDestImage($imgData, $imgPath, $dest)
     {
         $imgCreateFunc = 'imagecreatefrom' . $imgData['ext'];
         if (!function_exists($imgCreateFunc)) {
@@ -652,10 +652,10 @@ class BootstrapCssSprite
      *
      * @return string
      */
-    protected function _getImageClassName($imgPath, $imgData)
+    protected function getImageClassName($imgPath, $imgData)
     {
-        $sourcePathLeng = mb_strlen($this->_imgSourcePath);
-        $class = '.' . $this->_cssNamespace . '-' . mb_substr($imgPath, $sourcePathLeng + 1);
+        $sourcePathLeng = mb_strlen($this->imgSourcePath);
+        $class = '.' . $this->cssNamespace . '-' . mb_substr($imgPath, $sourcePathLeng + 1);
         $class = mb_substr($class, 0, mb_strlen($class) - mb_strlen($imgData['ext']) - 1);
         $class = str_replace(DIRECTORY_SEPARATOR, '-', $class);
         return $class;
@@ -668,7 +668,7 @@ class BootstrapCssSprite
      *
      * @return bool
      */
-    protected function _isMagicAction($class)
+    protected function isMagicAction($class)
     {
         foreach (static::$magicActions as $magicAction) {
             $isMagicAction = (mb_substr($class, -mb_strlen('.' . $magicAction)) === '.' . $magicAction);
@@ -686,13 +686,13 @@ class BootstrapCssSprite
      * @param string $class
      * @param array $imgData
      */
-    protected function _setImageCssData(&$cssList, $class, $imgData)
+    protected function setImageCssData(&$cssList, $class, $imgData)
     {
         $styles = array(
             'background-position'   => '-' . $imgData['x'] . 'px 0'
         );
 
-        $this->_addSizeToStyle($cssList, $styles, $imgData);
+        $this->addSizeToStyle($cssList, $styles, $imgData);
 
 
         $cssList[] = array(
@@ -709,24 +709,25 @@ class BootstrapCssSprite
      * @param array $imgData
      * @param string $class
      */
-    protected function _setStyleForMagicActionImage(&$cssList, $imgPath, $imgData, $class)
+    protected function setStyleForMagicActionImage(&$cssList, $imgPath, $imgData, $class)
     {
         $extPos = mb_strrpos($imgPath, $imgData['ext']);
         foreach (static::$magicActions as $magicAction) {
             $magicActionPath = '';
             if ($extPos !== false) {
                 // Check if image has magic action image (active, hover, target)
-                $magicActionPath = substr_replace($imgPath,
+                $magicActionPath = substr_replace(
+                    $imgPath,
                     $magicAction . '.' . $imgData['ext'],
                     $extPos,
                     strlen($imgData['ext'])
                 );
-                $hasMagicAction = isset($this->_imgList[$magicActionPath]);
+                $hasMagicAction = isset($this->imgList[$magicActionPath]);
             } else {
                 $hasMagicAction = false;
             }
             if ($hasMagicAction) {
-                $magicActionData = $this->_imgList[$magicActionPath];
+                $magicActionData = $this->imgList[$magicActionPath];
                 $css = array();
                 if (in_array($magicAction, array('checked', 'disabled'))) {
                     $css['selectors'] = array(
@@ -737,8 +738,8 @@ class BootstrapCssSprite
                     $css['selectors'] = array(
                         "{$class}:{$magicAction}",
                         "{$class}.{$magicAction}",
-                        ".wrap-{$this->_cssNamespace}:{$magicAction} {$class}",
-                        ".wrap-{$this->_cssNamespace}.{$magicAction} {$class}",
+                        ".wrap-{$this->cssNamespace}:{$magicAction} {$class}",
+                        ".wrap-{$this->cssNamespace}.{$magicAction} {$class}",
                     );
                 }
                 $css['styles'] = array(
@@ -746,7 +747,7 @@ class BootstrapCssSprite
                     'background-position-x' => '-' . $magicActionData['x'] . 'px',
                 );
 
-                $this->_addSizeToStyle($cssList, $css, $magicActionData);
+                $this->addSizeToStyle($cssList, $css, $magicActionData);
 
                 $cssList[] = $css;
             }
@@ -761,7 +762,7 @@ class BootstrapCssSprite
      * @param array $style styledatalist for the current element
      * @param array $imgData data for the image
      */
-    protected function _addSizeToStyle($cssList, &$style, $imgData)
+    protected function addSizeToStyle($cssList, &$style, $imgData)
     {
         //If the image has the same size as given in base-css data skip entry for the size
         if ($cssList[0]['styles']['height'] != $imgData['height'] . 'px') {
@@ -778,23 +779,23 @@ class BootstrapCssSprite
      * @param resource $dest
      * @return void
      */
-    protected function _saveImageFile($dest)
+    protected function saveImageFile($dest)
     {
         // Save image to file
-        $imgDestExt = mb_strtolower(mb_substr($this->_imgDestPath, mb_strrpos($this->_imgDestPath, '.') + 1));
+        $imgDestExt = mb_strtolower(mb_substr($this->imgDestPath, mb_strrpos($this->imgDestPath, '.') + 1));
         switch ($imgDestExt) {
             case 'jpg':
             case 'jpeg':
-                imagejpeg($dest, $this->_imgDestPath);
+                imagejpeg($dest, $this->imgDestPath);
                 break;
             case 'gif':
-                imagegif($dest, $this->_imgDestPath);
+                imagegif($dest, $this->imgDestPath);
                 break;
             case 'png':
-                imagepng($dest, $this->_imgDestPath);
+                imagepng($dest, $this->imgDestPath);
                 break;
             default:
-                $this->addError(static::ERROR_UNKNOWN_IMAGE_EXT, $this->_imgDestPath);
+                $this->addError(static::ERROR_UNKNOWN_IMAGE_EXT, $this->imgDestPath);
                 return;
                 break;
         }
@@ -804,7 +805,7 @@ class BootstrapCssSprite
      *
      * @param array $cssList
      */
-    protected function _saveCssFile($cssList)
+    protected function saveCssFile($cssList)
     {
         // Save CSS file
         $cssString = '';
@@ -815,6 +816,6 @@ class BootstrapCssSprite
             }
             $cssString .= '}';
         }
-        file_put_contents($this->_cssPath, $cssString);
+        file_put_contents($this->cssPath, $cssString);
     }
 }
