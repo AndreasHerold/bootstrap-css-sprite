@@ -36,7 +36,7 @@ class BootstrapCssSpriteTest extends TestCase
     {
         $sprite = new BootstrapCssSprite();
 
-        $method = $this->getProtectedMethod($sprite, '_initDestImage');
+        $method = $this->getProtectedMethod($sprite, 'initDestImage');
 
         $image = $method->invoke($sprite, 10, 10);
         $this->assertEquals('gd', get_resource_type($image));
@@ -52,7 +52,7 @@ class BootstrapCssSpriteTest extends TestCase
         $sprite = new BootstrapCssSprite();
         $sprite->setImgSourcePath($sourcePath);
 
-        $method = $this->getProtectedMethod($sprite, '_getImageClassName');
+        $method = $this->getProtectedMethod($sprite, 'getImageClassName');
 
         $path = $sourcePath . DIRECTORY_SEPARATOR . $fileName . '.png';
         $data = array('ext' => 'png');
@@ -66,30 +66,13 @@ class BootstrapCssSpriteTest extends TestCase
     {
         $class = '.img-imageName';
         $sprite = new BootstrapCssSprite();
-        $method = $this->getProtectedMethod($sprite, '_isMagicAction');
+        $method = $this->getProtectedMethod($sprite, 'isMagicAction');
 
         $this->assertFalse($method->invoke($sprite, $class));
         $class .= '.hover';
         $this->assertTrue($method->invoke($sprite, $class));
     }
 
-    /**
-     * Testmethod for BootstrapCssSprite::_setImageCssData
-     */
-    public function testSetImageCssData()
-    {
-        $sprite = new BootstrapCssSprite();
-        $method = $this->getProtectedMethod($sprite, '_setImageCssData');
-
-        $cssList = array();
-        $class = '.img-imageName';
-        $data = array('x' => 0);
-
-        $method->invoke($sprite, $cssList, $class, $data);
-
-        $this->assertArrayHasKey('selectors', $cssList[0]);
-        $this->assertArrayHasKey('styles', $cssList[0]);
-    }
     /**
      * @param $class
      * @param $method
