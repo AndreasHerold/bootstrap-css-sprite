@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/AndreasHerold/bootstrap-css-sprite.svg?branch=master)](https://travis-ci.org/AndreasHerold/bootstrap-css-sprite)
+
 ## Introduction
 <b>Bootstrap CSS Sprite</b> is a PHP library, which provides displaying of multiple images as a signle sprite in a Bootstrap 3 style.
 E.g. you have a set of images one of which is named <b>cat.png</b>.
