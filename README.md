@@ -43,6 +43,7 @@ $sprite->setImgSourcePath('./images/source')
 $sprite->generate();
 </code></pre>
 
+You can also see the usage by the example implementation in ./example/sprite.example.php
 
 It will look the same way for Yii component. Just copy <b>YiiBootstrapCssSprite.php</b> file to /extensions/ and add this component in /config/main.php
 <pre><code>'components' => array(

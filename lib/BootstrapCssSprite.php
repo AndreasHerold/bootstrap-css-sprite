@@ -654,9 +654,16 @@ class BootstrapCssSprite
      */
     protected function getImageClassName($imgPath, $imgData)
     {
+        $pathInfo = pathinfo($imgPath);
+
+        if (isset($pathInfo['extension'])) {
+            $extension = $pathInfo['extension'];
+        } else {
+            $extension = $imgData['ext'];
+        }
         $sourcePathLeng = mb_strlen($this->imgSourcePath);
         $class = '.' . $this->cssNamespace . '-' . mb_substr($imgPath, $sourcePathLeng + 1);
-        $class = mb_substr($class, 0, mb_strlen($class) - mb_strlen($imgData['ext']) - 1);
+        $class = mb_substr($class, 0, mb_strlen($class) - mb_strlen($extension) - 1);
         $class = str_replace(DIRECTORY_SEPARATOR, '-', $class);
         return $class;
     }
